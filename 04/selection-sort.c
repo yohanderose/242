@@ -13,7 +13,7 @@ void selection_sort(int *a, int n) {
         min = j;
       }
     }
-    temp = a[i];      //works with *() and []
+    temp = a[i];      /*works with *() and []*/
     a[i] = a[min];
     a[min] = temp;
   }
