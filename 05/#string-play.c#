@@ -1,0 +1,27 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+int main(void) {
+
+  char *p = "My name is ";
+  char *name= "Yohan";
+
+  printf("%s%s\n", p, name);
+
+  name = "James";
+  return 0;
+  struct oceans {
+    inx x;
+    int y; 
+  };
+}
+/*
+  - strings as pointers
+  - structs instead of classes, end in semicolon
+  - o->x and o->y
+  - exercises: pg 47
+
+  - recursion on pointers *a
+  - exercises: pg 49, 50
+*/
