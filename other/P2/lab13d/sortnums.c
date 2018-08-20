@@ -12,6 +12,7 @@ int main(void) {
   }
 
   flexarray_sort(f);
+  flexarray_print(f);
   flexarray_free(f);
  
   return EXIT_SUCCESS;

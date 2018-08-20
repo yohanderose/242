@@ -16,7 +16,7 @@ void printFreq(int *a, int len) {
   }
 
   for (i=0; i<len; i++) {
-    if (freq[i] > 0) {
+    if (freq[i] > 1) {
       printf("%d occurs %d times\n", i, freq[i]);
     }
   }
@@ -41,7 +41,7 @@ int main(void) {
     my_array[i] = rand() % array_size;
   }
   
-  printf("What’s in the array:\n");
+  printf("What's in the array:\n");
   for (i = 0; i < array_size; i++) {
     printf("%d ", my_array[i]);
   }
