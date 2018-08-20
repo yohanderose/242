@@ -52,18 +52,20 @@ void flexarray_printERR(flexarray f) {
     }
 }
 void flexarray_sort(flexarray f) {
-    int i, j, key;
-    for (i=0; i<f->itemcount; i++) {
-        if (i==(f->itemcount/2)) {
+    int i, j, temp, mindex;
+    for (i=0; i<f->itemcount-1; i++) {
+        if (i==f->itemcount/2) {
             flexarray_printERR(f);
         }
-        key = f->items[i];
-        j = i-1;
-        while (j>=0 && key<f->items[j]) {
-            f->items[j+1] = f->items[j];
-            j--;
+        mindex = i;
+        for (j=i+1; j<f->itemcount; j++) {
+            if (f->items[j] < f->items[mindex]) {
+                mindex = j;
+            }
         }
-        f->items[j+1] = key;
+        temp = f->items[i];
+        f->items[i] = f->items[mindex];
+        f->items[mindex] = temp;        
     }
 }
 void flexarray_free(flexarray f) {
