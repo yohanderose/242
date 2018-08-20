@@ -4,6 +4,7 @@
 void printFreq(int *a, int len) {
   int *freq = malloc(len* sizeof a[0]);
   int i, j;
+  
   for (i=0; i<len; i++) {
     int count = 0;
     for (j=0; j<len; j++) {
