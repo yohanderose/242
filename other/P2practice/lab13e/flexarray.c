@@ -7,23 +7,20 @@ struct flexarrayrec {
     int itemcount;
     int *items;
 };
-
 void* emalloc(size_t s) {
     void *result = malloc(s);
-    if (result == NULL) {
+    if (NULL==result) {
         exit(EXIT_FAILURE);
     }
     return result;
 }
-
-void* erealloc(void* a, size_t s) {
-    void *result = realloc(a, s);
-    if (result == NULL) {
+void* erealloc(int *a, int n) {
+    void *result = realloc(a, n);
+    if (NULL==result) {
         exit(EXIT_FAILURE);
     }
     return result;
 }
-
 flexarray flexarray_new() {
     flexarray f = emalloc(sizeof *f);
     f->capacity = 2;
@@ -31,7 +28,6 @@ flexarray flexarray_new() {
     f->items = emalloc(f->capacity*sizeof f->items[0]);
     return f;
 }
-
 void flexarray_append(flexarray f, int num) {
     if (f->itemcount == f->capacity) {
         f->capacity *= 2;
@@ -52,18 +48,20 @@ void flexarray_printERR(flexarray f) {
     }
 }
 void flexarray_sort(flexarray f) {
-    int i, j, key;
-    for (i=0; i<f->itemcount; i++) {
-        if (i==(f->itemcount/2)) {
+    int i, j, temp, mindex;
+    for (i=0; i<f->itemcount-1; i++) {
+        if (i==f->itemcount/2) {
             flexarray_printERR(f);
         }
-        key = f->items[i];
-        j = i-1;
-        while (j>=0 && key<f->items[j]) {
-            f->items[j+1] = f->items[j];
-            j--;
+        mindex = i;
+        for (j=i+1; j<f->itemcount; j++) {
+            if (f->items[j] < f->items[mindex]) {
+                mindex = j;
+            }
         }
-        f->items[j+1] = key;
+        temp = f->items[i];
+        f->items[i] = f->items[mindex];
+        f->items[mindex] = temp;
     }
 }
 void flexarray_free(flexarray f) {

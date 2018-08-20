@@ -16,8 +16,8 @@ void* emalloc(size_t s) {
     return result;
 }
 
-void* erealloc(void* a, size_t s) {
-    void *result = realloc(a, s);
+void* erealloc(void *a, int n) {
+    void *result = realloc(a, n);
     if (result == NULL) {
         exit(EXIT_FAILURE);
     }
@@ -28,10 +28,9 @@ flexarray flexarray_new() {
     flexarray f = emalloc(sizeof *f);
     f->capacity = 2;
     f->itemcount = 0;
-    f->items = emalloc(f->capacity*sizeof f->items[0]);
+    f->items = emalloc(f->capacity* sizeof f->items[0]);
     return f;
 }
-
 void flexarray_append(flexarray f, int num) {
     if (f->itemcount == f->capacity) {
         f->capacity *= 2;
@@ -54,12 +53,12 @@ void flexarray_printERR(flexarray f) {
 void flexarray_sort(flexarray f) {
     int i, j, key;
     for (i=0; i<f->itemcount; i++) {
-        if (i==(f->itemcount/2)) {
+        if (i==f->itemcount/2) {
             flexarray_printERR(f);
         }
         key = f->items[i];
         j = i-1;
-        while (j>=0 && key<f->items[j]) {
+        while (j>=0 && key < f->items[j]) {
             f->items[j+1] = f->items[j];
             j--;
         }
