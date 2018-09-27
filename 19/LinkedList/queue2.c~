@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "queue.h"
+
+struct q_item {
+  double item;
+  q_item next;
+};
+struct queue {
+  q_item first;
+  q_item last;
+  int length;
+};
