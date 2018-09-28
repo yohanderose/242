@@ -40,8 +40,8 @@ void node_free(q_item first) {
 queue queue_free(queue q) {
   if (q->length > 0) {
     node_free(q->first);
-    free(q);
   }
+  free(q);
   return NULL;
 }
 

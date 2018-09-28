@@ -96,7 +96,7 @@ void graph_print_dist_pred(graph g) {
   int i;
   printf("vertex distance pred\n");
   for (i=0; i<g->size; i++) {
-    printf("   %d        %d   %d\n", i, g->nodes[i].dist, g->nodes[i].parent);
+    printf("%5d %5d %5d\n", i, g->nodes[i].dist, g->nodes[i].parent);
   }
 }
 
