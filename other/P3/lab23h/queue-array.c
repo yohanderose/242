@@ -30,8 +30,7 @@ void enqueue(queue q, double item) {
 double dequeue(queue q) {
   double result = -1;
   if (q->num_items > 0) {
-    result = q->items[q->head];
-    q->items[q->head++] = 0;
+    result = q->items[q->head++];
     q->num_items--;
   }
   return result;
@@ -50,7 +49,7 @@ void queue_print_info(queue q) {
   printf("capacity %d, num_items %d, head %d\n[", q->capacity,
 	 q->num_items, q->head);
   for (i = 0; i < q->capacity; i++) {
-    printf("%s%.2f", i == 0 ? "" : ", ", q->items[i]);
+      printf("%s%.2f", i == 0 ? "" : ", ", q->items[i]);
   }
   printf("]\n");
 }

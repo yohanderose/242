@@ -40,7 +40,7 @@ bst bst_insert(bst b, char *str) {
     strcpy(b->key, str);
     return b;
   }
-  if (strcmp(str, b->key) >= 0) {
+  if (strcmp(str, b->key) <= 0) {
     b->left = bst_insert(b->left, str);
   } else {
     b->right = bst_insert(b->right, str);
