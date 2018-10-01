@@ -1,0 +1,80 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "mylib.h"
+#include "bst.h"
+
+struct bstnode {
+  char *key;
+  bst left;
+  bst right;
+};
+
+bst bst_new() {
+  bst b = emalloc(sizeof *b);
+  b->key = NULL;
+  b->left = NULL;
+  b->right = NULL;
+  return b;
+}
+
+bst bst_free(bst b) {
+  if (b->left == NULL && b->right == NULL && b->key == NULL) {
+    return b;
+  }
+  bst_free(b);
+  free(b->left);
+  free(b->right);
+  free(b->key);
+  free(b);
+  return NULL;
+}
+
+bst bst_insert(bst b, char *str) {  
+  if (b == NULL) {
+    bst b = bst_new();
+    strcpy(b->key, str);
+    return b;
+  }
+  if (strcmp(str, b->key) >= 0) {
+    bst_insert(b->left, str);
+  } else {
+    bst_insert(b->right, str);
+  }
+  return b;
+}
+
+bst bst_inorder(bst b, void f(char *str)) {
+  if (b == NULL) {
+    return b;
+  }
+  bst_inorder(b->left, f);
+  bst_inorder(b->right, f);
+  f(b->key);
+  return NULL;
+}
+
+bst bst_preorder(bst b, void f(char *str)) {
+  if (b == NULL) {
+    return b;
+  }
+  bst_inorder(b->left, f);
+  bst_inorder(b->right, f);
+  f(b->key);
+  return NULL;
+}
+
+int bst_search(bst b, char *str) {
+  if (b->key == NULL) {
+    return 0;
+  }
+  if (strcmp(b->key, str) == 0) {
+    return 1;
+  }
+  bst_search(b->left, str);
+  bst_search(b->right, str);
+  return 0;
+}
+
+				 
+
